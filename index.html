@@ -6,8 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<script>
+    function githubLogin(){
+        alert(`https://github.com/login/oauth/authorize?client_id=b82119c824f134a222fe`);
+        window.location= `https://github.com/login/oauth/authorize?client_id=b82119c824f134a222fe&redirect_uri=${window.location}`;
+    }
+
+    function  getLoginInfo(){
+        const searchInfo = new window.URLSearchParams(window.location.search);
+        const tempCode = searchInfo.get("code")
+        console.log(tempCode)
+        var requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            mode:"no-cors"
+        };
+        fetch(`https://github.com/login/oauth/access_token?client_id=b82119c824f134a222fe&client_secret=ee9f603e4d814eb7e5d865e0b27daf2454addf9e&code=${tempCode}`)
+        .then((response) => response.text())
+        .then((body) => {
+            console.log(body);
+        }); 
+    }  
+    </script>
 <body>
     <h1>Login With Github</h1>
-    <button> Github</button>
+    <button onclick="githubLogin()">Login Github</button>
+    <button onclick="getLoginInfo()">Get Token</button>
 </body>
 </html>
