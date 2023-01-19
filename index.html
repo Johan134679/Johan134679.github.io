@@ -21,7 +21,7 @@
             redirect: 'follow',
             mode:"no-cors"
         };
-        fetch(`https://github.com/login/oauth/access_token?client_id=b82119c824f134a222fe&client_secret=ee9f603e4d814eb7e5d865e0b27daf2454addf9e&code=${tempCode}`)
+        fetch(`https://github.com/login/oauth/access_token?client_id=b82119c824f134a222fe&client_secret=ee9f603e4d814eb7e5d865e0b27daf2454addf9e&code=${tempCode}`,requestOptions)
         .then((response) => response.text())
         .then((body) => {
             console.log(body);
